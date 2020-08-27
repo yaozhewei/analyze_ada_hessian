@@ -18,12 +18,13 @@ def optimize(f, v0, num_iter, lr, bg, bh, k, num_samples):
     for i in range(num_iter):
         # compute function value, compute gradient of y(v) w.r.t. v, apply single optimizer step
         y = f(v)
+#         print(y)
         y.backward(create_graph=True)
         optimizer.step()
         optimizer.zero_grad()
 
         # add current value to path
-        print(f'#{i}: v={v}')
+#         print(f'#{i}: v={v}')
         path.append(v.clone().detach().numpy())
 
     return np.stack(path)
